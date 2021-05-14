@@ -1,4 +1,4 @@
-/* File:            tb_BarrelShifer_8bit.sv
+/* File:            tb_BarrelShifter_8bit.sv
  * Author:          Caglayan DOKME, caglayandokme@gmail.com
  * Date:            May 14, 2021 -> Created
  * Description:     Testbench for 8-Bit Barrel Shifter module
@@ -6,7 +6,7 @@
 
 `timescale 1ns / 1ps
 
-module tb_BarrelShifer_8bit;
+module tb_BarrelShifter_8bit;
 
 // Test Signals
 logic [7:0] test_a;
@@ -14,7 +14,7 @@ logic [2:0] test_shiftAmount;
 logic [7:0] test_shifted;
 
 // Instantiation of Circuit Under Test
-BarrelShifer_8bit BarrelShifter(.a(test_a), .shiftAmount(test_shiftAmount), .shifted(test_shifted));
+BarrelShifter_8bit BarrelShifter(.a(test_a), .shiftAmount(test_shiftAmount), .shifted(test_shifted));
 
 // Test Scenario
 initial begin
