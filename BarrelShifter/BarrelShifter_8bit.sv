@@ -1,4 +1,4 @@
-/* File:            BarrelShifer_8bit.sv
+/* File:            BarrelShifter_8bit.sv
  * Author:          Caglayan DOKME, caglayandokme@gmail.com
  * Date:            May 14, 2021 -> Created
  * Description:     Shifts the given signal to the right according to the given shift amount
@@ -7,7 +7,7 @@
 
 `timescale 1ns / 1ps
 
-module BarrelShifer_8bit
+module BarrelShifter_8bit
 (
     input  logic [7:0] a,
     input  logic [2:0] shiftAmount,
