@@ -30,9 +30,6 @@ always begin
     clk = 1'b0; #(T/2);
 end
 
-// Variables
-int i = 0;
-
 // Test Scenario
 initial begin
     // Clock Synhronization
