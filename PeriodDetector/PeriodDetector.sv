@@ -1,6 +1,6 @@
 /* File:            PeriodDetector.sv
  * Author:          Caglayan DOKME, caglayandokme@gmail.com
- * Date:            May 23, 2021 -> Created
+ * Date:            May 30, 2021 -> Created
  * Description:     Period Detector module. Detects period of a signal in cycles.
  */
  
