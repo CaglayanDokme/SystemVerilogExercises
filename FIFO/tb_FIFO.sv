@@ -1,6 +1,7 @@
 /* File:            tb_FIFO.sv
  * Author:          Caglayan DOKME, caglayandokme@gmail.com
  * Date:            June 15, 2021 -> Created
+ *                  June 26, 2021 -> Testbench updated to cover Data count, almostFull and almostEmpty signals.
  * Description:     Testbench for the parametrical FIFO module.
  */
  
@@ -22,6 +23,9 @@ logic [WIDTH-1 : 0] writeData = 0;
 logic [WIDTH-1 : 0] readData; 
 logic full;            
 logic empty;
+logic almostFull;        // Asserts when at least %75 of the FIFO is filled
+logic almostEmpty;       // Asserts when at most %25 of the FIFO is filled
+logic [DEPTH : 0] dataCount; // Indicates the amount of data
 
 // Instantiation of Circuit Under Test
 FIFO #(.WIDTH(WIDTH), .DEPTH(DEPTH)) CUT(.*);

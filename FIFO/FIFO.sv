@@ -1,6 +1,7 @@
 /* File:            FIFO.sv
  * Author:          Caglayan DOKME, caglayandokme@gmail.com
  * Date:            June 15, 2021 -> Created
+ *                  June 26, 2021 -> Data count, almostFull and almostEmpty signals added.
  * Description:     Parametrical FIFO module.
  */
  
@@ -19,11 +20,16 @@ module FIFO
     input  logic [WIDTH-1 : 0] writeData,
     output logic [WIDTH-1 : 0] readData,
     output logic full,
-    output logic empty
+    output logic empty,
+    output logic almostFull,        // Asserts when at least %75 of the FIFO is filled
+    output logic almostEmpty,       // Asserts when at most %25 of the FIFO is filled
+    output logic [DEPTH : 0] dataCount // Indicates the amount of data
 );
 
 // Local Constants
-localparam HIGH_ADDR = 2**DEPTH - 1;    // Index of highest address
+localparam HIGH_ADDR    = 2**DEPTH - 1;    // Index of highest address
+localparam ALMOST_FULL  = (2**(DEPTH-2)) * 3;   // %75
+localparam ALMOST_EMPTY = (2**(DEPTH-2)) * 1;   // %25
 
 // Internal Data
 logic [WIDTH-1 : 0] data [HIGH_ADDR : 0];
@@ -39,6 +45,14 @@ always_comb begin
     // signal prevents comparison between actual and implicit signal
     writePtr_p  = writePtr  + 1;
     readPtr_p   = readPtr   + 1;
+    
+    // Calculation of the amount of data
+    dataCount[DEPTH]        = full;
+    dataCount[DEPTH-1 : 0]  = writePtr - readPtr;
+    
+    // Determination of 'almost' signals
+    almostFull  = (dataCount > ALMOST_FULL  );
+    almostEmpty = (dataCount < ALMOST_EMPTY );
 end    
 
 // Register Logic
